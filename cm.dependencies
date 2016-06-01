@@ -2,5 +2,10 @@
   {
     "repository": "android_device_samsung_hlte-common",
     "target_path": "device/samsung/hlte-common"
-  }
+  },
+  {
+    "repository": "android_kernel_samsung_hlte",
+    "branch": "twrp",
+    "target_path": "kernel/samsung/hlte-twrp"
+  },
 ]

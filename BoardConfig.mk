@@ -18,7 +18,15 @@
 TARGET_OTA_ASSERT_DEVICE := SC01F,hltedcm
 
 # Kernel
+ifeq ($(TARGET_RECOVERY),twrp)
+TARGET_KERNEL_VARIANT_CONFIG := kbc_sc01f_twrp_defconfig
+TARGET_KERNEL_CONFIG := ik_defconfig
+TARGET_KERNEL_SELINUX_CONFIG := ""
+TARGET_KERNEL_VARIANT_CONFIG := variant_hlte_dcm
+TARGET_KERNEL_SOURCE := kernel/samsung/hlte-twrp
+else
 TARGET_KERNEL_VARIANT_CONFIG := kbc_sc01f_aosp_defconfig
+endif
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_msm
