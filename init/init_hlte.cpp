@@ -27,39 +27,37 @@
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <stdlib.h>
+#include <android-base/properties.h>
 
-#include "vendor_init.h"
 #include "property_service.h"
+#include "vendor_init.h"
 #include "log.h"
-#include "util.h"
 
-#include "init_msm.h"
+#include "init_msm8974.h"
+
+using android::base::GetProperty;
 
 void gsm_properties()
 {
-    property_set("telephony.lteOnGsmDevice", "1");
     property_set("ro.telephony.default_network", "9");
-    //property_set("ro.telephony.ril.config", "newDialCode");
+    property_set("telephony.lteOnGsmDevice", "1");
     property_set("ro.ril.enable.dcm.feature", "1");
 }
 
-void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *board_type)
+void init_target_properties()
 {
-    char platform[PROP_VALUE_MAX];
-    int rc;
-
-    UNUSED(msm_id);
-    UNUSED(msm_ver);
-    UNUSED(board_type);
-
-    rc = property_get("ro.board.platform", platform);
-    if (!rc || !ISMATCH(platform, ANDROID_TARGET))
+    std::string platform = GetProperty("ro.board.platform", "");
+    if (platform != ANDROID_TARGET)
         return;
+    std::string bootloader = GetProperty("ro.bootloader", "");
 
-    property_set("ro.build.fingerprint", "samsung/SC-01F/SC-01F:5.0/LRX21V/SC01FOMUGOI4:user/release-keys");
-    property_set("ro.build.description", "hltedcm-user 5.0 LRX21V SC01FOMUGOI4 release-keys");
-    property_set("ro.product.model", "SC-01F");
-    property_set("ro.product.device", "SC-01F");
+    property_override("ro.build.fingerprint", "samsung/SC-01F/SC-01F:5.0/LRX21V/SC01FOMUGOI4:user/release-keys");
+    property_override("ro.build.description", "hltedcm-user 5.0 LRX21V SC01FOMUGOI4 release-keys");
+    property_override("ro.product.model", "SC-01F");
+    property_override("ro.product.device", "SC-01F");
     gsm_properties();
+
+    std::string device = GetProperty("ro.product.device", "");
+    LOG(INFO) << "Found bootloader id " << bootloader <<  " setting build properties for "
+	    << device <<  " device" << std::endl;
 }
