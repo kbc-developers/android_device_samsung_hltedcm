@@ -19,8 +19,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # Get non-open-source specific aspects
 $(call inherit-product-if-exists, vendor/samsung/hltetmo/hltetmo-vendor.mk)
 $(call inherit-product-if-exists, vendor/samsung/hltedcm/hltedcm-vendor.mk)
-$(call inherit-product-if-exists, vendor/samsung/hltedcm-felica/hltedcm-felica-vendor.mk)
-$(call inherit-product-if-exists, vendor/samsung/hltedcm-oneseg/hltedcm-oneseg-vendor.mk)
+#$(call inherit-product-if-exists, vendor/samsung/hltedcm-felica/hltedcm-felica-vendor.mk)
+#$(call inherit-product-if-exists, vendor/samsung/hltedcm-oneseg/hltedcm-oneseg-vendor.mk)
 
 # One-seg
 #PRODUCT_PACKAGES += \
@@ -28,9 +28,9 @@ $(call inherit-product-if-exists, vendor/samsung/hltedcm-oneseg/hltedcm-oneseg-v
 #    MobileTV_JPN_PHONE_K
 
 # NFC
-PRODUCT_PACKAGES += \
-    libpn547_fw \
-    nfc_nci.pn54x.default
+#PRODUCT_PACKAGES += \
+#    libpn547_fw \
+#    nfc_nci.pn54x.default
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/security_nfc_profile.dat:system/etc/security_nfc_profile.dat \
