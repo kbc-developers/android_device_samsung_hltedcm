@@ -17,6 +17,7 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Get non-open-source specific aspects
+$(call inherit-product-if-exists, vendor/samsung/hltetmo/hltetmo-vendor.mk)
 $(call inherit-product-if-exists, vendor/samsung/hltedcm/hltedcm-vendor.mk)
 $(call inherit-product-if-exists, vendor/samsung/hltedcm-felica/hltedcm-felica-vendor.mk)
 $(call inherit-product-if-exists, vendor/samsung/hltedcm-oneseg/hltedcm-oneseg-vendor.mk)
@@ -25,6 +26,16 @@ $(call inherit-product-if-exists, vendor/samsung/hltedcm-oneseg/hltedcm-oneseg-v
 #PRODUCT_PACKAGES += \
 #    ISDBT_FactoryTest \
 #    MobileTV_JPN_PHONE_K
+
+# NFC
+PRODUCT_PACKAGES += \
+    libpn547_fw \
+    nfc_nci.pn54x.default
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/security_nfc_profile.dat:system/etc/security_nfc_profile.dat \
+    $(LOCAL_PATH)/configs/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
+    $(LOCAL_PATH)/configs/libnfc-nxp.conf:system/etc/libnfc-nxp.conf
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
@@ -37,11 +48,10 @@ PRODUCT_PACKAGES += \
     init.carrier.rc \
     init.felica.sh
 
+# Variant blobs script
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
-    $(LOCAL_PATH)/configs/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
-    $(LOCAL_PATH)/configs/nfcee_access.xml:system/etc/nfcee_access.xml
+    $(LOCAL_PATH)/releasetools/variant_blobs_hook.sh:install/bin/variant_blobs_hook.sh \
+    device/samsung/hlte-common/releasetools/variant_blobs.sh:install/bin/variant_blobs.sh
 
 # Common hlte
 $(call inherit-product, device/samsung/hlte-common/hlte.mk)
-
