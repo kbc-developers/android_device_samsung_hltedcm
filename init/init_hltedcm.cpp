@@ -27,6 +27,11 @@
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <stdlib.h>
+#include <stdio.h>
+
+#include <android-base/properties.h>
+
 #include "vendor_init.h"
 #include "property_service.h"
 #include "log.h"
