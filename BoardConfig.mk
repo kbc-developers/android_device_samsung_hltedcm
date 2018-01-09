@@ -28,8 +28,9 @@ TARGET_KERNEL_VARIANT_CONFIG := kbc_sc01f_aosp_defconfig
 endif
 
 # Init
-TARGET_INIT_VENDOR_LIB := libinit_msm
-TARGET_LIBINIT_DEFINES_FILE := device/samsung/hltedcm/init/init_hlte.cpp
+#TARGET_INIT_VENDOR_LIB := libinit_msm
+#TARGET_LIBINIT_DEFINES_FILE := device/samsung/hltedcm/init/init_hlte.cpp
+TARGET_LIBINIT_MSM8974_DEFINES_FILE := device/samsung/hltedcm/init/init_hlte.cpp
 TARGET_UNIFIED_DEVICE := true
 
 # NFC

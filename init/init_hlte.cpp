@@ -34,7 +34,7 @@
 #include "log.h"
 #include "util.h"
 
-#include "init_msm.h"
+#include "init_msm8974.h"
 
 void gsm_properties()
 {
@@ -44,18 +44,19 @@ void gsm_properties()
     property_set("ro.ril.enable.dcm.feature", "1");
 }
 
-void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *board_type)
+//void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *board_type)
+void init_target_properties()
 {
     char platform[PROP_VALUE_MAX];
     int rc;
 
-    UNUSED(msm_id);
-    UNUSED(msm_ver);
-    UNUSED(board_type);
+//    UNUSED(msm_id);
+//    UNUSED(msm_ver);
+//    UNUSED(board_type);
 
-    rc = property_get("ro.board.platform", platform);
-    if (!rc || !ISMATCH(platform, ANDROID_TARGET))
-        return;
+//    rc = property_get("ro.board.platform", platform);
+//    if (!rc || !ISMATCH(platform, ANDROID_TARGET))
+//        return;
 
     property_set("ro.build.fingerprint", "samsung/SC-01F/SC-01F:5.0/LRX21V/SC01FOMUGOI4:user/release-keys");
     property_set("ro.build.description", "hltedcm-user 5.0 LRX21V SC01FOMUGOI4 release-keys");
