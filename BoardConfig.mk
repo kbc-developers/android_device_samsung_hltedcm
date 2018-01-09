@@ -20,7 +20,7 @@ TARGET_OTA_ASSERT_DEVICE := SC01F,hltedcm
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_msm8974
-TARGET_LIBINIT_MSM8974_DEFINES_FILE := device/samsung/hltedcm/init/init_hlte.cpp
+TARGET_LIBINIT_MSM8974_DEFINES_FILE := device/samsung/hltedcm/init/init_hltedcm.cpp
 
 # Kernel
 TARGET_KERNEL_CONFIG := lineage_hltedcm_defconfig
