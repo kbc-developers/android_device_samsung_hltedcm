@@ -27,18 +27,27 @@
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <android-base/properties.h>
-
-#include "property_service.h"
 #include "vendor_init.h"
+#include "property_service.h"
 #include "log.h"
+#include "util.h"
 
 #include "init_msm8974.h"
 
 using android::base::GetProperty;
 
-void gsm_properties()
+void set_rild_libpath(char const *variant)
 {
+    std::string libpath("/system/vendor/lib/libsec-ril.");
+    libpath += variant;
+    libpath += ".so";
+    property_override("rild.libpath", libpath.c_str());
+}
+
+void gsm_properties(char const *rild_lib_variant)
+{
+    set_rild_libpath(rild_lib_variant);
+
     property_set("ro.telephony.default_network", "9");
     property_set("telephony.lteOnGsmDevice", "1");
     property_set("ro.ril.enable.dcm.feature", "1");
@@ -55,7 +64,7 @@ void init_target_properties()
     property_override("ro.build.description", "hltedcm-user 5.0 LRX21V SC01FOMUGOI4 release-keys");
     property_override("ro.product.model", "SC-01F");
     property_override("ro.product.device", "SC-01F");
-    gsm_properties();
+    gsm_properties("tmo");	//temporary,set tmo
 
     std::string device = GetProperty("ro.product.device", "");
     LOG(INFO) << "Found bootloader id " << bootloader <<  " setting build properties for "
