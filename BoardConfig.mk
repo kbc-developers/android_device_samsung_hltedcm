@@ -16,7 +16,9 @@
 # inherit from common hlte
 -include device/samsung/hlte-common/BoardConfigCommon.mk
 
-TARGET_OTA_ASSERT_DEVICE := SC01F,hltedcm
+PRODUCT_RESTRICT_VENDOR_FILES := false
+
+TARGET_OTA_ASSERT_DEVICE := SC01F,SC-01F,hltedcm
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_msm8974
@@ -27,6 +29,7 @@ TARGET_KERNEL_CONFIG := lineage_hltedcm_defconfig
 
 # NFC
 BOARD_NFC_CHIPSET := sony
+BOARD_NFC_HAL_SUFFIX := msm8974
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 11534336
