@@ -17,7 +17,6 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Get non-open-source specific aspects
-$(call inherit-product-if-exists, vendor/samsung/hltetmo/hltetmo-vendor.mk)
 $(call inherit-product-if-exists, vendor/samsung/hltedcm/hltedcm-vendor.mk)
 #$(call inherit-product-if-exists, vendor/samsung/hltedcm-felica/hltedcm-felica-vendor.mk)
 #$(call inherit-product-if-exists, vendor/samsung/hltedcm-oneseg/hltedcm-oneseg-vendor.mk)
@@ -28,9 +27,7 @@ $(call inherit-product-if-exists, vendor/samsung/hltedcm/hltedcm-vendor.mk)
 #    MobileTV_JPN_PHONE_K
 
 # NFC
-#PRODUCT_PACKAGES += \
-#    libpn547_fw \
-#    nfc_nci.pn54x.default
+DEVICE_NFC_SONY := yes
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/security_nfc_profile.dat:system/etc/security_nfc_profile.dat \
@@ -45,6 +42,11 @@ PRODUCT_PACKAGES += \
     FeliCaLock \
     init.carrier.rc \
     init.felica.sh
+
+#Smart card service for felica
+#TARGET_ENABLE_SMARTCARD_SERVICE := true
+PRODUCT_PACKAGES += \
+    org.simalliance.openmobileapi.xml org.simalliance.openmobileapi
 
 # Common hlte
 $(call inherit-product, device/samsung/hlte-common/hlte.mk)
