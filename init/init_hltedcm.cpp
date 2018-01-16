@@ -60,9 +60,9 @@ void gsm_properties(char const *rild_lib_variant)
 
 void init_target_properties()
 {
-    std::string platform = GetProperty("ro.board.platform", "");
-    if (platform != ANDROID_TARGET)
-        return;
+//    std::string platform = GetProperty("ro.board.platform", "");
+//    if (platform != ANDROID_TARGET)
+//        return;
     std::string bootloader = GetProperty("ro.bootloader", "");
 
     property_override("ro.build.fingerprint", "samsung/SC-01F/SC-01F:5.0/LRX21V/SC01FOMUGOI4:user/release-keys");
