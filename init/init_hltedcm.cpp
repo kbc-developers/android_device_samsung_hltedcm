@@ -69,7 +69,7 @@ void init_target_properties()
     property_override("ro.build.description", "hltedcm-user 5.0 LRX21V SC01FOMUGOI4 release-keys");
     property_override("ro.product.model", "SC-01F");
     property_override("ro.product.device", "SC-01F");
-    gsm_properties("tmo");	//temporary,set tmo
+    gsm_properties("dcm");
 
     std::string device = GetProperty("ro.product.device", "");
     LOG(INFO) << "Found bootloader id " << bootloader <<  " setting build properties for "
