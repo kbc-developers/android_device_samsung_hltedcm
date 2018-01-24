@@ -30,16 +30,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include <android-base/logging.h>
 #include <android-base/properties.h>
 
 #include "vendor_init.h"
 #include "property_service.h"
-#include "log.h"
-#include "util.h"
 
 #include "init_msm8974.h"
 
 using android::base::GetProperty;
+using android::init::property_set;
 
 void set_rild_libpath(char const *variant)
 {
@@ -72,6 +72,6 @@ void init_target_properties()
     gsm_properties("dcm");
 
     std::string device = GetProperty("ro.product.device", "");
-    LOG(INFO) << "Found bootloader id " << bootloader <<  " setting build properties for "
+    LOG(ERROR) << "Found bootloader id " << bootloader <<  " setting build properties for "
 	    << device <<  " device" << std::endl;
 }
