@@ -16,8 +16,6 @@
 # inherit from common hlte
 -include device/samsung/hlte-common/BoardConfigCommon.mk
 
-PRODUCT_RESTRICT_VENDOR_FILES := false
-
 TARGET_OTA_ASSERT_DEVICE := SC01F,SC-01F,hltedcm
 
 # Init
@@ -25,11 +23,10 @@ TARGET_INIT_VENDOR_LIB := libinit_msm8974
 TARGET_LIBINIT_MSM8974_DEFINES_FILE := device/samsung/hltedcm/init/init_hltedcm.cpp
 
 # Kernel
-TARGET_KERNEL_CONFIG := lineage_hltedcm_defconfig
+TARGET_KERNEL_CONFIG := lineage_hlte_bcm2079x_defconfig
 
 # NFC
-BOARD_NFC_CHIPSET := sony
-BOARD_NFC_HAL_SUFFIX := msm8974
+#include $(COMMON_PATH)/nfc/bcm2079x/board.mk
 
 # inherit from the proprietary version
 -include vendor/samsung/hltedcm/BoardConfigVendor.mk
