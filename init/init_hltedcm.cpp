@@ -67,8 +67,8 @@ void init_target_properties()
 
     property_override("ro.build.fingerprint", "samsung/SC-01F/SC-01F:5.0/LRX21V/SC01FOMUGOI4:user/release-keys");
     property_override("ro.build.description", "hltedcm-user 5.0 LRX21V SC01FOMUGOI4 release-keys");
-    property_override("ro.product.model", "SC-01F");
-    property_override("ro.product.device", "SC-01F");
+    property_override_dual("ro.product.model", "ro.vendor.product.model", "SC-01F");
+    property_override_dual("ro.product.device", "ro.vendor.product.device", "SC-01F");
     gsm_properties("dcm");
 
     std::string device = GetProperty("ro.product.device", "");
